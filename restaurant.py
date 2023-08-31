@@ -56,3 +56,38 @@ class Restaurant:
         return total_ratings / len(self.reviews)
 
 
+class Review:
+    all_reviews = []
+
+    def __init__(self, customer, restaurant, rating):
+        self.customer = customer
+        self.restaurant = restaurant
+        self.rating = rating
+        Review.all_reviews.append(self)
+
+    def rating(self):
+        return self.rating
+
+    def customer(self):
+        return self.customer
+
+    def restaurant(self):
+        return self.restaurant
+
+    @classmethod
+    def all(cls):
+        return cls.all_reviews
+
+
+# User input
+def main():
+    customer_name = input("First name: ")
+    customer_family_name = input("Last name: ")
+    restaurant_name = input("Restaurant's name: ")
+    rating = int(input("Rating (1-15): "))
+
+    customer = Customer(customer_name, customer_family_name)
+    restaurant = Restaurant(restaurant_name)
+    customer.add_review(restaurant, rating)
+
+    print("Review added!")
